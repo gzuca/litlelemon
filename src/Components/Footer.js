@@ -22,8 +22,7 @@ function Footer() {
                 </div>
 
                 <div className='contact-info'>
-                    <h3>Contact</h3>
-                    <p>Our Contact information:</p>
+                    <h3>Contact information</h3>
                     <ul>
                         <li>Phone number: </li>
                         <li>Email:<a href="mailto:contact@littlelemon.com">contact@littleleom.com</a></li>

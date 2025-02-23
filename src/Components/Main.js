@@ -1,18 +1,18 @@
-import react from 'react';
+import React from 'react';
+
 
 const Main = () =>{
     return(
         <main>
             <section className='main-hero'>
                 <div>
-                <h1>Little Lemon</h1>
-                <h2>Chicago</h2>
-                <p>We are a family owned Mediterranean restaurant,
-                focused o traditional recipes served with a modern twist.</p>
-                <button>Reserve a Table</button>
+                    <h1>Little Lemon</h1>
+                    <h2>Chicago</h2>
+                    <p>We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
+                    <button>Reserve a Table</button>
                 </div>
                 <div className='restauranfood'>
-                    <img src='./restauranfood.jpg' alt='Picture of a restauran dish' />
+                    <img src='./restauranfood.jpg' alt='Restaurant dish' />
                 </div>
             </section>
             <section className='highlights'>
@@ -53,56 +53,64 @@ const Main = () =>{
                     </ul>
                 </div>
             </section>
-            <section className='Testimonials'>
-                <div className='title'><h1>Testimonials</h1></div>
-                <div className='testimonialslist'>
+            <section className='testimonials'>
+                <div className='testimonials-title'><h1>Testimonials</h1></div>
+                <div className='testimonials-list'>
                     <ul className='testimonials-item'>
                         <li className='person'>
                             <h1>"A Hidden Gem!"</h1>
-                            <p>"Little Lemon offers an unforgettable Mediterranean dining experience!
+                            <div className='person-content'><p>"Little Lemon offers an unforgettable Mediterranean dining experience!
                                 The flavors are authentic, the ambiance is warm, and the service is top-notch.
                                 A must-visit in Chicago!" — Sarah Thompson </p>
-                            <img src='' alt='foto persona'/>
+                            <img src='./Pictures/sarah.avif' alt='foto persona'/></div>
                         </li>
                         <li className='person'>
                             <h1>"Exceptional Flavor!"</h1>
-                            <p>"The Greek Salad and Lemon Dessert are out of this world! Every bite feels like a taste of home.
+                            <div className='person-content'><p>"The Greek Salad and Lemon Dessert are out of this world! Every bite feels like a taste of home.
                                 I always look forward to my visits!" — John Davis</p>
-                            <img src='' alt='foto persona'/>
+                            <img src='./Pictures/john.avif' alt='foto persona'/></div>
                         </li>
                         <li className='person'>
                             <h1>"Perfect for Any Occasion!"</h1>
+                            <div className='person-content'>
                             <p>"Whether it's a casual meal or a special night out, Little Lemon never disappoints.
                                 The food is fresh, the staff is friendly, and the atmosphere is always inviting!" — Emily Roberts</p>
-                            <img src='' alt='foto persona'/>
+                            <img src='./Pictures/emily.avif' alt='foto persona'/>
+                            </div>
                         </li>
                         <li className='person'>
                             <h1>"Unforgettable Experience!"</h1>
-                            <p>"I’ve visited Little Lemon multiple times, and each meal is better than the last.
+                            <div className='person-content'> <p>"I’ve visited Little Lemon multiple times, and each meal is better than the last.
                                 the dishes are packed with flavor, and the atmosphere makes
                                 every visit feel special." — Mark Lewis </p>
-                            <img src='' alt='foto persona'/>
+                            <img src='./Pictures/mark.jpg' alt='foto persona'/></div>
                         </li>
                         <li className='person'>
                             <h1>"A Taste of Home!"</h1>
-                            <p>"As a Mediterranean food lover, I can say Little Lemon has the best authentic dishes
+                            <div className='person-content'> <p>"As a Mediterranean food lover, I can say Little Lemon has the best authentic dishes
                                  I’ve ever had in Chicago. It’s like dining with family!" — Olivia Martinez </p>
-                            <img src='' alt='foto persona'/>
+                            <img src='./Pictures/olivia.avif' alt='foto persona'/></div>
                         </li>
                     </ul>
                 </div>
             </section>
             <section className='About'>
             <div>
-                <h1>Little Lemon</h1>
-                <h2>Chicago</h2>
-                <p>At Little Lemon, we bring the best of Mediterranean flavors to Chicago with a
+                <div className='About-title'>
+                    <h1>Little Lemon</h1>
+                    <h2>Chicago</h2>
+                </div>
+                <div className='About-content'>
+                <div className='About-text'><p>At Little Lemon, we bring the best of Mediterranean flavors to Chicago with a
                     menu inspired by traditional recipes and fresh, high-quality ingredients.
                     Our family-owned restaurant offers a warm, inviting atmosphere where you can
                     enjoy delicious dishes made with love. From our famous Greek Salad to our homemade lemon dessert,
-                    every meal is a celebration of flavor and tradition. Join us and experience the taste of the Mediterranean!</p>
-                <div><img src='' alt='Picture of the restaurant'/></div>
-                <div><img src=''alt='other picture of the restaurant'/></div>
+                    every meal is a celebration of flavor and tradition. Join us and experience the taste of the Mediterranean!
+                    </p></div>
+                <div className='About-pics'>
+                    <img src='./Pictures/restaurantchefB.jpg' alt='Picture of the chef'/>
+                </div>
+                </div>
                 </div>
             </section>
         </main>
