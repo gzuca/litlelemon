@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
+import BookingForm from './BookingForm';
+import { Link } from 'react-router-dom';
 
+const Main = () => {
 
-const Main = () =>{
     return(
         <main>
             <section className='main-hero'>
@@ -9,12 +11,14 @@ const Main = () =>{
                     <h1>Little Lemon</h1>
                     <h2>Chicago</h2>
                     <p>We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
-                    <button>Reserve a Table</button>
+                    <button>
+                    <Link to="/BookingPage">Reserve a Table</Link></button>
                 </div>
                 <div className='restauranfood'>
-                    <img src='./restauranfood.jpg' alt='Restaurant dish' />
+                    <img src='./restauranfood.jpg' alt="Image of a dish served at Little Lemon" aria-label="Dish from Little Lemon restaurant"  />
                 </div>
             </section>
+
             <section className='highlights'>
                 <div className='title-button-container'>
                     <h1>This Weeks Specials!</h1>
