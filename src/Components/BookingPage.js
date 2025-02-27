@@ -1,23 +1,14 @@
-import React,  { useState, useReducer } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import  BookingForm from './BookingForm';
+import fetchAPI, {submitAPI} from './api';
+import { useNavigate} from 'react-router-dom';
 
-const availableTimesReducer = (state, action) => {
-  switch (action.type) {
-    case 'setAvailableTimes':
-      return {
-        ...state,
-        availableTimes: action.payload,
-      };
-    default:
-      return state;
-  }
+
+const initializeTimes = () => {
+  const today = new Date();
+  return fetchAPI(today);
 };
 
-function initializeTimes() {
-  return {
-    availableTimes: ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'],
-  };
-};
 
 function reducer(state, action) {
   switch (action.type) {
@@ -34,24 +25,51 @@ const BookingPage = () => {
     '17:00', '18:00', '19:00', '20:00', '21:00', '22:00'
   ]);
 
-  const [state, dispatch] = useReducer(reducer, undefined, initializeTimes);
+    const loadBookingData = () => {
+      const savedData = localStorage.getItem('bookingData');
+      return savedData ? JSON.parse(savedData) : [
+        { date: '2025-02-26', time: '19:00', guests: 4, occasion: 'Birthday' },
+        { date: '2025-02-27', time: '18:30', guests: 2, occasion: 'Anniversary' },
+      ];
+    };
 
-  const handleBooking = (resDate, resTime, guests, occasion) => {
-    console.log('Booking successful:', { resDate, resTime, guests, occasion });
-    dispatch({
-      type: 'SET_AVAILABLE_TIMES',
-      payload: availableTimes.filter(time => time !== resTime),
-    });
+    const [bookingData, setBookingData] = useState(loadBookingData());
+    const [state, dispatch] = useReducer(reducer, undefined, initializeTimes);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.setItem('bookingData', JSON.stringify(bookingData));
+  }, [bookingData]);
+
+  const submitForm = (formData) => {
+    const { resDate, resTime, guests, occasion } = formData;
+    const success = submitAPI({ resDate, resTime, guests, occasion });
+
+    if (success) {
+      setBookingData((prevData) => {
+        const updatedData = [
+          ...prevData,
+          { date: resDate, time: resTime, guests, occasion },
+        ];
+        localStorage.setItem('bookingData', JSON.stringify(updatedData));
+        return updatedData;
+      });
+      navigate('/confirmedBooking');
+    } else {
+      console.log('Error al hacer la reserva.');
+    }
   };
 
   const updateTimes = (selectedDate) => {
-    const updatedTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
-
+    const date = new Date(selectedDate);
+    console.log('Selected Date:', date);
+    const updatedTimes = fetchAPI(date);
     dispatch({
-      type: 'etAvailableTimes',
+      type: 'setAvailableTimes',
       payload: updatedTimes,
     });
-  };
+};
 
   const updateAvailableTimes = (date) => {
     dispatch({
@@ -91,11 +109,38 @@ const BookingPage = () => {
                 availableTimes={availableTimes}
                 updateTimes={updateTimes}
                 onDateChange={updateAvailableTimes}
+                submitForm={submitForm}
                 />
             </section>
         </div>
       </div>
-    </div>
+
+
+<section style={{ margin: '20px 0', textAlign: 'center' }}>
+<h2>Upcoming Reservations</h2>
+<table style={{ width: '100%', margin: '0 auto', border: '1px solid white', borderCollapse: 'collapse' }}>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Guests</th>
+      <th>Occasion</th>
+    </tr>
+  </thead>
+  <tbody>
+    {bookingData.map((booking, index) => (
+      <tr key={index}>
+        <td>{booking.date}</td>
+        <td>{booking.time}</td>
+        <td>{booking.guests}</td>
+        <td>{booking.occasion}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+</section>
+</div>
+
   );
 }
 

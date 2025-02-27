@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
+import { useNavigate } from 'react-router-dom';
+import submitForm from './BookingPage';
 
 
-const BookingForm = ({availableTimes = [], updateTimes, onDateChange})  => {
+const BookingForm = ({ availableTimes, updateTimes, onDateChange, submitForm }) => {
   const [resDate, setResDate] = useState('');
   const [resTime, setResTime] = useState('17:00');
   const [guests, setGuests] = useState(1);
@@ -26,7 +28,7 @@ const BookingForm = ({availableTimes = [], updateTimes, onDateChange})  => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Booking Successful', { resDate, resTime, guests, occasion });
+    submitForm({ resDate, resTime, guests, occasion });
   };
 
   return (
