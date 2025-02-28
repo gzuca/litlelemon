@@ -9,7 +9,6 @@ const initializeTimes = () => {
   return fetchAPI(today);
 };
 
-
 function reducer(state, action) {
   switch (action.type) {
     case 'setAvailableTimes':
